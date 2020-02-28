@@ -7,6 +7,8 @@ COPY package*.json ./
 
 RUN npm ci
 
+RUN npm prune --production
+
 COPY . .
 
 ENV NODE_ENV=production
