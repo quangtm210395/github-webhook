@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'github_webhook',
-      script: './index.js',
+      script: 'index.js',
       watch: true,
       env: {
         PORT: 6968,
