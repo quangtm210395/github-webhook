@@ -22,7 +22,7 @@ app.post('/github-webhook', async (req, res) => {
   const envFolder = process.env.ENV_FOLDER || '~/env-folder';
 
   try {
-    const r = shell.exec(`bash -c ${deployScript} ${deployFolder} ${fullName} ${name} ${envFolder}`);
+    const r = shell.exec(`bash -c '${deployScript} ${deployFolder} ${fullName} ${name} ${envFolder}'`);
     console.log('exec result: ', r);
   } catch (error) {
     console.error(error);
