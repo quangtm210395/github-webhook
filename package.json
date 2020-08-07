@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "dev": "nodemon --watch index.js -r dotenv/config index.js",
     "start": "node index.js",
-    "redeploy": "pm2 reload github.webhook.pm2.js --env production"
+    "redeploy": "pm2 reload ecosystem.config.js --env production"
   },
   "author": "quangtm",
   "license": "MIT",
