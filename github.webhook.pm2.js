@@ -12,7 +12,9 @@ module.exports = {
       env_production: {
         PORT: 6969,
         NODE_ENV: 'production',
-        DEPLOY_SCRIPT_PATH: '/home/quangtm/cicd-scripts/deploy.sh',
+        DEPLOY_SCRIPT_PATH: '/home/quangtm/cicd-scripts/deploy-cicd.sh',
+        ENV_FOLDER: '/home/quangtm/env-folder',
+        DEPLOY_FOLDER: '/home/quangtm/deploy-folder',
       },
     },
   ],
