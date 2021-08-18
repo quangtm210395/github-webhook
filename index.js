@@ -12,6 +12,8 @@ const mapping = {
   'clan-capital-landing': process.env.DEPLOY_CLAN_CAPITAL,
 };
 
+app.get('/', (req, res) => { res.send('hello'); });
+
 app.post('/github-webhook', async (req, res) => {
   const { body } = req;
   const { name, full_name: fullName } = body.repository;
