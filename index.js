@@ -1,12 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const { urlencoded, json } = require('body-parser');
 const shell = require('shelljs');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }), bodyParser.json());
+app.use(urlencoded({ extended: true }), json());
+
+const mapping = {
+  'clan-capital-landing': process.env.DEPLOY_CLAN_CAPITAL,
+};
 
 app.post('/github-webhook', async (req, res) => {
   const { body } = req;
@@ -17,9 +21,10 @@ app.post('/github-webhook', async (req, res) => {
   console.log(`commit after: ${body.after}`);
   console.log(`pusher: ${body.pusher.name}`);
   console.log(`repo: ${fullName}`);
-  const deployScript = process.env.DEPLOY_SCRIPT_PATH || '~/deploy-cicd.sh';
-  const deployFolder = process.env.DEPLOY_FOLDER || '~/deploy-folder';
-  const envFolder = process.env.ENV_FOLDER || '~/env-folder';
+  const folder = mapping[name] || mapping[fullName] || 'default';
+  const deployScript = `~/deploy/${folder}/run.sh`;
+  const envFolder = `${folder}/env`;
+  const deployFolder = `~/deploy-folder/${folder}`;
 
   try {
     const r = shell.exec(`bash -c '${deployScript} ${deployFolder} ${fullName} ${name} ${envFolder}'`);
