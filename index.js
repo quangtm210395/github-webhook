@@ -30,7 +30,7 @@ app.post('/github-webhook', async (req, res) => {
 
   try {
     const r = shell.exec(`bash -c '${deployScript} ${deployFolder} ${fullName} ${name} ${envFolder}'`);
-    console.log('exec result: ', r);
+    console.log('exec result: ', r.code);
   } catch (error) {
     console.error(error);
   }
